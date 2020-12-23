@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>bazy danych komis</title>
+</h:head>
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
+		style="margin-bottom: 1em;">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="marka:" />
+				<p:inputText value="#{carListBB.brand}" />
+				<p:commandButton value="Szukaj" update="form-table" />
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+
+	<p:messages />
+
+	<h:form id="form-table" style="margin-bottom:1em;">
+
+		<p:commandButton value="Dodaj nowy samochód"
+			action="#{carListBB.newCar()}" style="margin-bottom:1em;"/>
+
+		<p:dataTable value="#{carListBB.list}" var="c">
+
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="marka" />
+				</f:facet>
+				<h:outputText value="#{c.marka}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="model" />
+				</f:facet>
+				<h:outputText value="#{c.model}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="bezwypadkowy" />
+				</f:facet>
+				<h:outputText value="#{c.accidentFree}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="pojemność" />
+				</f:facet>
+				<h:outputText value="#{c.capacity}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="moc" />
+				</f:facet>
+				<h:outputText value="#{c.power}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opis" />
+				</f:facet>
+				<h:outputText value="#{c.description}" />
+			</p:column>
+
+			<p:column priority="4">
+				<f:facet name="header">
+					<h:outputText value="data rejstarcji" />
+				</f:facet>
+				<h:outputText value="#{c.firstRegistration}"/>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj"
+					action="#{carListBB.editCar(c)}" />
+
+				<p:commandButton value="Usuń"
+					action="#{carListBB.deleteCar(c)}" update="@form" />
+
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+
+</h:body>
+</html>

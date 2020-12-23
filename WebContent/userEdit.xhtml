@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{userEditBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>User Edit</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{userEditBB.user != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<h:outputLabel for="u-login" value="login:" />
+				<p:inputText id="u-login" value="#{userEditBB.user.login}"
+					required="true" requiredMessage="Podaj login"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-login" display="icon"/>
+
+				<h:outputLabel for="u-password" value="hasło:" />
+				<p:inputText id="u-password" value="#{userEditBB.user.password}"
+					required="true" requiredMessage="podaj model"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-password" display="icon"/>
+				
+				<h:outputLabel for="u-role" value="rola:" />
+				<p:inputText id="u-role" value="#{userEditBB.user.role}"
+					required="true" requiredMessage="jaka rola"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-role" display="icon"/>				
+				
+				<h:outputLabel for="u-email" value="email:" />
+				<p:inputText id="u-email" value="#{userEditBB.user.email}"
+					required="true" requiredMessage="podaj email"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-email" display="icon"/>
+				
+				
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{userEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="userList" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+
+</html>

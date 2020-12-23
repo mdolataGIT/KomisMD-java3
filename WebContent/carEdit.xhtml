@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{carEditBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>komis</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{carEditBB.car != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<h:outputLabel for="c-brand" value="marka:" />
+				<p:inputText id="c-brand" value="#{carEditBB.car.brand}"
+					required="true" requiredMessage="Podaj marke"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-brand" display="icon"/>
+
+				<h:outputLabel for="c-model" value="model:" />
+				<p:inputText id="c-model" value="#{carEditBB.car.model}"
+					required="true" requiredMessage="podaj model"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-model" display="icon"/>
+				
+				<h:outputLabel for="c-accidentFree" value="bezwypadkowy:" />
+				<p:inputText id="c-accidentFree" value="#{carEditBB.car.accidentFree}"
+					required="true" requiredMessage="czy bezwypadkowy"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-accidentFree" display="icon"/>				
+				
+				<h:outputLabel for="c-capacity" value="pojemność:" />
+				<p:inputText id="c-capacity" value="#{carEditBB.car.capacity}"
+					required="true" requiredMessage="podaj pojemność"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-capacity" display="icon"/>
+				
+				<h:outputLabel for="c-power" value="moc:" />
+				<p:inputText id="c-power" value="#{carEditBB.car.power}"
+					required="true" requiredMessage="podaj moc"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-power" display="icon"/>								
+
+				<h:outputLabel for="c-description" value="opis:" />
+				<p:inputText id="c-description" value="#{carEditBB.car.description}"
+					required="true" requiredMessage="podaj opis"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-description" display="icon"/>				
+
+				<h:outputLabel for="c-firstRegistration" value="data rejstracji" />
+				<p:inputText id="c-firstRegistration" value="#{carEditBB.car.firstRegistration}"
+					required="true" requiredMessage="podaj datę rejstracji"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+			    </p:inputText>
+				<p:message for="c-firstRegistration" display="icon"/>
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{carEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="carList" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+
+</html>

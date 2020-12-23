@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>User List</title>
+</h:head>
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
+		style="margin-bottom: 1em;">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="login:" />
+				<p:inputText value="#{userListBB.login}" />
+				<p:commandButton value="Szukaj" update="form-table" />
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
+
+	<p:messages />
+
+	<h:form id="form-table" style="margin-bottom:1em;">
+
+		<p:commandButton value="Dodaj nowego użytkownika"
+			action="#{userListBB.newUser()}" style="margin-bottom:1em;"/>
+
+		<p:dataTable value="#{userListBB.list}" var="u">
+
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="login" />
+				</f:facet>
+				<h:outputText value="#{u.login}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="hasło" />
+				</f:facet>
+				<h:outputText value="#{u.password}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="rola" />
+				</f:facet>
+				<h:outputText value="#{u.role}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="email" />
+				</f:facet>
+				<h:outputText value="#{u.email}" />
+			</p:column>
+
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj"
+					action="#{userListBB.editUser(u)}" />
+
+				<p:commandButton value="Usuń"
+					action="#{userListBB.deleteUser(u)}" update="@form" />
+
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+
+</h:body>
+</html>
