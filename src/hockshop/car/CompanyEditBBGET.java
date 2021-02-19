@@ -16,7 +16,7 @@ import jsf.hockshop.entities.Company;
 
 @Named
 @ViewScoped
-public class CompanyEditBB implements Serializable {
+public class CompanyEditBBGET implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private static final String PAGE_COMPANY_LIST = "/public/companyList?faces-redirect=true";
@@ -31,22 +31,25 @@ public class CompanyEditBB implements Serializable {
 	@Inject
 	FacesContext context;
 
-	@Inject
-	Flash flash;
 
 	public Company getCompany() {
 		return company;
 	}
 
 	public void onLoad() throws IOException {
-
-		loaded = (Company) flash.get("company");
-
-		if (loaded != null) {
-			company = loaded;
-		} else {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³êdne u¿ycie systemu", null));
-
+		if (!context.isPostback()) {
+			if (!context.isValidationFailed() && company.getIdCompany() != null) {
+				loaded = companyDAO.find(company.getIdCompany());
+			}
+			if (loaded != null) {
+				company = loaded;
+			} else {
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "BÅ‚Ä™dne uÅ¼ycie systemu", null));
+				// if (!context.isPostback()) { // possible redirect
+				// context.getExternalContext().redirect("personList.xhtml");
+				// context.responseComplete();
+				// }
+			}
 		}
 
 	}

@@ -37,14 +37,16 @@
 					<f:validateLength maximum="40" />
 				</p:inputText>
 				<p:message for="c-model" display="icon"/>
-				
-				<h:outputLabel for="c-accidentFree" value="bezwypadkowy:" />
-				<p:inputText id="c-accidentFree" value="#{carEditBB.car.accidentFree}"
-					required="true" requiredMessage="czy bezwypadkowy"
+
+				<h:outputLabel for="c-firstRegistration" value="data rejstracji" />
+				<p:inputText id="c-firstRegistration" value="#{carEditBB.car.firstRegistration}"
+					required="true" requiredMessage="podaj datę rejstracji"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
-				</p:inputText>
-				<p:message for="c-accidentFree" display="icon"/>				
+			    </p:inputText>
+				<p:message for="c-firstRegistration" display="icon"/>
+				
+				
 				
 				<h:outputLabel for="c-capacity" value="pojemność:" />
 				<p:inputText id="c-capacity" value="#{carEditBB.car.capacity}"
@@ -60,7 +62,17 @@
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
 				</p:inputText>
-				<p:message for="c-power" display="icon"/>								
+				<p:message for="c-power" display="icon"/>	
+				
+											
+				<h:outputLabel for="c-accidentFree" value="bezwypadkowy:" />
+				<p:inputText id="c-accidentFree" value="#{carEditBB.car.accidentFree}"
+					required="true" requiredMessage="czy bezwypadkowy"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-accidentFree" display="icon"/>
+
 
 				<h:outputLabel for="c-description" value="opis:" />
 				<p:inputText id="c-description" value="#{carEditBB.car.description}"
@@ -68,23 +80,21 @@
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
 				</p:inputText>
-				<p:message for="c-description" display="icon"/>				
+				<p:message for="c-description" display="icon"/>	
+				
+			
 
-				<h:outputLabel for="c-firstRegistration" value="data rejstracji" />
-				<p:inputText id="c-firstRegistration" value="#{carEditBB.car.firstRegistration}"
-					required="true" requiredMessage="podaj datę rejstracji"
-					validatorMessage="co najwyżej 40 znaków">
-					<f:validateLength maximum="40" />
-			    </p:inputText>
-				<p:message for="c-firstRegistration" display="icon"/>
+
 			</h:panelGrid>
 
 			<p:messages id="msgs" />
 
 			<p:commandButton value="Zapisz" action="#{carEditBB.saveData()}"
 				style="margin-right: 1em;" update="@form" />
+				
 
-			<p:button value="Anuluj" outcome="carList" />
+
+			<p:button value="Anuluj" outcome="/public/carList" />
 		</h:form>
 
 	</p:panel>

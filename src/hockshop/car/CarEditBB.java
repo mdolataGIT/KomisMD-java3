@@ -10,7 +10,6 @@ import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 import jsf.hockshop.dao.CarDAO;
 import jsf.hockshop.entities.Car;
@@ -20,7 +19,7 @@ import jsf.hockshop.entities.Car;
 public class CarEditBB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_CAR_LIST = "carList?faces-redirect=true";
+	private static final String PAGE_CAR_LIST = "/public/carList?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private Car car = new Car();

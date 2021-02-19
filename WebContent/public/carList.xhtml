@@ -5,6 +5,12 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+	
+<f:metadata>
+    	<f:viewParam name="c" value="#{carListBB.company.idCompany}"
+		converterMessage="Nieoczekiwany błąd"/>
+	<f:event type="preRenderView" listener="#{carListBB.onLoad()}" />
+</f:metadata>	
 
 <h:head>
 	<meta charset="utf-8"/>
@@ -29,6 +35,11 @@
 
 		<p:commandButton value="Dodaj nowy samochód"
 			action="#{carListBB.newCar()}" style="margin-bottom:1em;"/>
+		
+		<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" />
+		
+		<p:button outcome="/public/userList" value="Powrót">
+		</p:button>
 
 		<p:dataTable value="#{carListBB.list}" var="c">
 
@@ -36,7 +47,7 @@
 				<f:facet name="header">
 					<h:outputText value="marka" />
 				</f:facet>
-				<h:outputText value="#{c.marka}" />
+				<h:outputText value="#{c.brand}" />
 			</p:column>
 
 			<p:column>
@@ -48,9 +59,9 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="bezwypadkowy" />
+					<h:outputText value="data rejstarcji" />
 				</f:facet>
-				<h:outputText value="#{c.accidentFree}" />
+				<h:outputText value="#{c.firstRegistration}"/>
 			</p:column>
 
 			<p:column>
@@ -69,16 +80,16 @@
 
 			<p:column>
 				<f:facet name="header">
+					<h:outputText value="bezwypadkowy" />
+				</f:facet>
+				<h:outputText value="#{c.accidentFree}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
 					<h:outputText value="opis" />
 				</f:facet>
 				<h:outputText value="#{c.description}" />
-			</p:column>
-
-			<p:column priority="4">
-				<f:facet name="header">
-					<h:outputText value="data rejstarcji" />
-				</f:facet>
-				<h:outputText value="#{c.firstRegistration}"/>
 			</p:column>
 			
 			<p:column>

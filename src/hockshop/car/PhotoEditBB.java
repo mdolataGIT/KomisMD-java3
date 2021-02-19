@@ -11,22 +11,22 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import jsf.hockshop.dao.CompanyDAO;
-import jsf.hockshop.entities.Company;
+import jsf.hockshop.dao.PhotoDAO;
+import jsf.hockshop.entities.Photo;
 
 @Named
 @ViewScoped
-public class CompanyEditBB implements Serializable {
+public class PhotoEditBB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_COMPANY_LIST = "/public/companyList?faces-redirect=true";
+	private static final String PAGE_PHOTO_LIST = "photoList?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private Company company = new Company();
-	private Company loaded = null;
+	private Photo photo = new Photo();
+	private Photo loaded = null;
 
 	@EJB
-	CompanyDAO companyDAO;
+	PhotoDAO photoDAO;
 
 	@Inject
 	FacesContext context;
@@ -34,16 +34,16 @@ public class CompanyEditBB implements Serializable {
 	@Inject
 	Flash flash;
 
-	public Company getCompany() {
-		return company;
+	public Photo getPhoto() {
+		return photo;
 	}
 
 	public void onLoad() throws IOException {
 
-		loaded = (Company) flash.get("company");
+		loaded = (Photo) flash.get("photo");
 
 		if (loaded != null) {
-			company = loaded;
+			photo = loaded;
 		} else {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³êdne u¿ycie systemu", null));
 
@@ -57,10 +57,10 @@ public class CompanyEditBB implements Serializable {
 		}
 
 		try {
-			if (company.getIdCompany() == null) {
-				companyDAO.create(company);
+			if (photo.getIdPhoto() == null) {
+				photoDAO.create(photo);
 			} else {
-				companyDAO.merge(company);
+				photoDAO.merge(photo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,6 +69,6 @@ public class CompanyEditBB implements Serializable {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
-		return PAGE_COMPANY_LIST;
+		return PAGE_PHOTO_LIST;
 	}
 }

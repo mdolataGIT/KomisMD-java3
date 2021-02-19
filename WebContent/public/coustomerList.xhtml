@@ -8,7 +8,7 @@
 
 <h:head>
 	<meta charset="utf-8"/>
-	<title>User List</title>
+	<title>Customer List</title>
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
 
@@ -16,8 +16,8 @@
 		style="margin-bottom: 1em;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="login:" />
-				<p:inputText value="#{userListBB.login}" />
+				<h:outputLabel value="nazwa:" />
+				<p:inputText value="#{coustomerListBB.coustomerName}" />
 				<p:commandButton value="Szukaj" update="form-table" />
 			</h:panelGrid>
 		</h:form>
@@ -27,37 +27,30 @@
 
 	<h:form id="form-table" style="margin-bottom:1em;">
 
-		<p:commandButton value="Dodaj nowego użytkownika"
-			action="#{userListBB.newUser()}" style="margin-bottom:1em;"/>
+		<p:commandButton value="Dodaj nowego klienta"
+			action="#{coustomerListBB.newCoustomer()}" style="margin-bottom:1em;"/>
 
-		<p:dataTable value="#{userListBB.list}" var="u">
+		<p:dataTable value="#{coustomerListBB.list}" var="c">
 
 			<p:column priority="5">
 				<f:facet name="header">
-					<h:outputText value="login" />
+					<h:outputText value="nazwa" />
 				</f:facet>
-				<h:outputText value="#{u.login}" />
+				<h:outputText value="#{c.coustomerName}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="hasło" />
+					<h:outputText value="nazwisko" />
 				</f:facet>
-				<h:outputText value="#{u.password}" />
+				<h:outputText value="#{c.coustomerSurname}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="rola" />
+					<h:outputText value="data zakupu" />
 				</f:facet>
-				<h:outputText value="#{u.role}" />
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="email" />
-				</f:facet>
-				<h:outputText value="#{u.email}" />
+				<h:outputText value="#{c.purchaseDate}" />
 			</p:column>
 
 			
@@ -67,10 +60,10 @@
 				</f:facet>
 
 				<p:commandButton value="Edytuj"
-					action="#{userListBB.editUser(u)}" />
+					action="#{coustomerListBB.editCoustomery(c)}" />
 
 				<p:commandButton value="Usuń"
-					action="#{userListBB.deleteUser(u)}" update="@form" />
+					action="#{coustomeryListBB.deleteCoustomer(c)}" update="@form" />
 
 			</p:column>
 

@@ -19,7 +19,7 @@ import jsf.hockshop.entities.User;
 public class UserEditBB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_USER_LIST = "userList?faces-redirect=true";
+	private static final String PAGE_USER_LIST = "/public/userList?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private User user = new User();

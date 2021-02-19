@@ -18,7 +18,8 @@ import jsf.hockshop.entities.User;
 @Named
 @RequestScoped
 public class UserListBB {
-	private static final String PAGE_USER_EDIT = "userEdit?faces-redirect=true";
+	private static final String PAGE_USER_EDIT = "/app/userEdit?faces-redirect=true";
+	private static final String PAGE_COMPANY = "/public/companyList.xhtml";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private String login;
@@ -76,5 +77,9 @@ public class UserListBB {
 	public String deleteUser(User user){
 		userDAO.remove(user);
 		return PAGE_STAY_AT_THE_SAME;
+	}
+	
+	public String goToCompany() {
+		return PAGE_COMPANY;
 	}
 }

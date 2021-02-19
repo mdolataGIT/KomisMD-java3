@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{companyEditBB.onLoad()}" />
+</f:metadata>
+
+<h:head>
+	<meta charset="utf-8"/>
+	<title>Company Edit</title>
+</h:head>
+
+<h:body style="background-color: #eee; margin: 0.5em;">
+
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{companyEditBB.company != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<h:outputLabel for="c-name" value="nazwa:" />
+				<p:inputText id="c-name" value="#{companyEditBB.company.name}"
+					required="true" requiredMessage="Podaj nazwę"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-name" display="icon"/>
+
+				<h:outputLabel for="c-city" value="miasto:" />
+				<p:inputText id="c-city" value="#{companyEditBB.company.city}"
+					required="true" requiredMessage="podaj miasto"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-city" display="icon"/>
+				
+				<h:outputLabel for="c-address" value="adres:" />
+				<p:inputText id="c-address" value="#{companyEditBB.company.address}"
+					required="true" requiredMessage="jaki adres"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-address" display="icon"/>				
+				
+				<h:outputLabel for="c-arch" value="archiwalny:" />
+				<p:inputText id="c-arch" value="#{companyEditBB.company.arch}"
+					required="true" requiredMessage="czy archiwalny"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="c-arch" display="icon"/>
+				
+				
+			</h:panelGrid>
+
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{companyEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="/public/companyList" />
+		</h:form>
+
+	</p:panel>
+
+</h:body>
+
+</html>

@@ -8,7 +8,7 @@
 
 <h:head>
 	<meta charset="utf-8"/>
-	<title>Company List</title>
+	<title>Photo List</title>
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
 
@@ -16,8 +16,8 @@
 		style="margin-bottom: 1em;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="nazwa:" />
-				<p:inputText value="#{companyListBB.name}" />
+				<h:outputLabel value="url:" />
+				<p:inputText value="#{photoListBB.url}" />
 				<p:commandButton value="Szukaj" update="form-table" />
 			</h:panelGrid>
 		</h:form>
@@ -27,38 +27,24 @@
 
 	<h:form id="form-table" style="margin-bottom:1em;">
 
-		<p:commandButton value="Dodaj nową firmę"
-			action="#{companyListBB.newCompany()}" style="margin-bottom:1em;"/>
+		<p:commandButton value="Dodaj nowe zdjecie"
+			action="#{photoListBB.newPhoto()}" style="margin-bottom:1em;"/>
 
-		<p:dataTable value="#{companyListBB.list}" var="c">
+		<p:dataTable value="#{photoListBB.list}" var="p">
 
 			<p:column priority="5">
 				<f:facet name="header">
-					<h:outputText value="nazwa" />
+					<h:outputText value="url" />
 				</f:facet>
-				<h:outputText value="#{c.name}" />
+				<h:outputText value="#{p.url}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="miasto" />
+					<h:outputText value="photoDescription" />
 				</f:facet>
-				<h:outputText value="#{c.city}" />
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="adres" />
-				</f:facet>
-				<h:outputText value="#{c.address}" />
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="archiwalny" />
-				</f:facet>
-				<h:outputText value="#{c.arch}" />
-			</p:column>
+				<h:outputText value="#{p.photoDescription}" />
+			</p:column>			
 
 			
 			<p:column>
@@ -67,10 +53,10 @@
 				</f:facet>
 
 				<p:commandButton value="Edytuj"
-					action="#{companyListBB.editCompany(c)}" />
+					action="#{photoListBB.editPhoto(p)}" />
 
 				<p:commandButton value="Usuń"
-					action="#{companyListBB.deleteCompany(c)}" update="@form" />
+					action="#{photoListBB.deletePhoto(p)}" update="@form" />
 
 			</p:column>
 

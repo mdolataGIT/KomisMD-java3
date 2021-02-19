@@ -1,15 +1,19 @@
 package hockshop.car;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 
 import jsf.hockshop.dao.CompanyDAO;
 import jsf.hockshop.entities.Company;
@@ -17,8 +21,9 @@ import jsf.hockshop.entities.Company;
 @Named
 @RequestScoped
 public class CompanyListBB {
-	private static final String PAGE_COMPANY_EDIT = "companyEdit?faces-redirect=true";
+	private static final String PAGE_COMPANY_EDIT = "/app/companyEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
+	private static final String PAGE_COMPANY_NEXT = "/public/carList";
 
 	private String name;
 		
@@ -30,7 +35,12 @@ public class CompanyListBB {
 	
 	@EJB
 	CompanyDAO companyDAO;
-		
+	
+	
+
+	
+	
+
 	public String getName() {
 		return name;
 	}
@@ -76,4 +86,12 @@ public class CompanyListBB {
 		companyDAO.remove(company);
 		return PAGE_STAY_AT_THE_SAME;
 	}
+	
+	public String nextCompany(Company company){
+		
+		return PAGE_COMPANY_NEXT;
+	}
+	
+
+
 }

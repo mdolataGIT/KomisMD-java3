@@ -7,7 +7,9 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
-    <f:viewAction action="#{companyEditBB.onLoad()}" />
+    	<f:viewParam name="c" value="#{companyEditBBGET.company.idCompany}"
+		converterMessage="Nieoczekiwany błąd"/>
+	<f:event type="preRenderView" listener="#{companyEditBBGET.onLoad()}" />
 </f:metadata>
 
 <h:head>
@@ -23,7 +25,7 @@
 			<h:panelGrid columns="3" cellpadding="5">
 
 				<h:outputLabel for="c-name" value="nazwa:" />
-				<p:inputText id="c-name" value="#{companyEditBB.company.name}"
+				<p:inputText id="c-name" value="#{companyEditBBGET.company.name}"
 					required="true" requiredMessage="Podaj nazwę"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
@@ -31,7 +33,7 @@
 				<p:message for="c-name" display="icon"/>
 
 				<h:outputLabel for="c-city" value="miasto:" />
-				<p:inputText id="c-city" value="#{companyEditBB.company.city}"
+				<p:inputText id="c-city" value="#{companyEditBBGET.company.city}"
 					required="true" requiredMessage="podaj miasto"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
@@ -39,7 +41,7 @@
 				<p:message for="c-city" display="icon"/>
 				
 				<h:outputLabel for="c-address" value="adres:" />
-				<p:inputText id="c-address" value="#{companyEditBB.company.address}"
+				<p:inputText id="c-address" value="#{companyEditBBGET.company.address}"
 					required="true" requiredMessage="jaki adres"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
@@ -47,7 +49,7 @@
 				<p:message for="c-address" display="icon"/>				
 				
 				<h:outputLabel for="c-arch" value="archiwalny:" />
-				<p:inputText id="c-arch" value="#{companyEditBB.company.arch}"
+				<p:inputText id="c-arch" value="#{companyEditBBGET.company.arch}"
 					required="true" requiredMessage="czy archiwalny"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
@@ -59,10 +61,10 @@
 
 			<p:messages id="msgs" />
 
-			<p:commandButton value="Zapisz" action="#{companyEditBB.saveData()}"
+			<p:commandButton value="Zapisz" action="#{companyEditBBGET.saveData()}"
 				style="margin-right: 1em;" update="@form" />
 
-			<p:button value="Anuluj" outcome="companyList" />
+			<p:button value="Anuluj" outcome="/public/companyList" />
 		</h:form>
 
 	</p:panel>
