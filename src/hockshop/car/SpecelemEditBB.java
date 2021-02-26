@@ -12,19 +12,21 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import jsf.hockshop.dao.CoustomerDAO;
+import jsf.hockshop.dao.SpecelemDAO;
 import jsf.hockshop.entities.Coustomer;
+import jsf.hockshop.entities.Specelem;
 
 @Named
 @ViewScoped
-public class CoustomerEditBB implements Serializable{
-	private static final String PAGE_COUSTOMER_LIST ="/public/coustomerList?faces-redirect=true";
+public class SpecelemEditBB implements Serializable{
+	private static final String PAGE_SPECELEM_LIST ="/public/specelemList?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME =null;
 	
-	private Coustomer coustomer = new Coustomer ();
-	private Coustomer loaded = null;
+	private Specelem specelem = new Specelem ();
+	private Specelem loaded = null;
 
 	@EJB
-	CoustomerDAO coustomerDAO;
+	SpecelemDAO specelemDAO;
 	
 	@Inject
 	FacesContext context;
@@ -32,15 +34,15 @@ public class CoustomerEditBB implements Serializable{
 	@Inject
 	Flash flash;
 	
-	public Coustomer getCoustomer() {
-		return coustomer;
+	public Specelem getSpecelem() {
+		return specelem;
 	}
 	
 	public void onLoad() throws IOException{
-		loaded = (Coustomer) flash.get("coustomer");
+		loaded = (Specelem) flash.get("specelem");
 		
 		if(loaded!=null) {
-			coustomer = loaded;
+			specelem = loaded;
 		} else {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³êdne u¿ycie systemu", null));
 		}
@@ -52,10 +54,10 @@ public class CoustomerEditBB implements Serializable{
 		}
 		
 		try {
-			if(coustomer.getIdCoustomer()==null) {
-				coustomerDAO.create(coustomer);
+			if(specelem.getIdSpecelem()==null) {
+				specelemDAO.create(specelem);
 			}else {
-				coustomerDAO.merge(coustomer);
+				specelemDAO.merge(specelem);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -63,7 +65,7 @@ public class CoustomerEditBB implements Serializable{
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "wyst¹pi³ b³¹d zapisu", null));
 			return PAGE_STAY_AT_THE_SAME;
 		}
-		return PAGE_COUSTOMER_LIST;
+		return PAGE_SPECELEM_LIST;
 	}
 	
 	

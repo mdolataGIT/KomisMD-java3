@@ -6,11 +6,23 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
+<f:metadata>
+    	<f:viewParam name="c" value="#{coustomerListBB.car.idCar}"
+		converterMessage="Nieoczekiwany błąd"/>
+	<f:event type="preRenderView" listener="#{coustomerListBB.onLoad()}" />
+</f:metadata>
+
 <h:head>
 	<meta charset="utf-8"/>
 	<title>Customer List</title>
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
+
+<script> 
+function reload() {
+	window.location.reload(false);
+	  
+}</script>
 
 	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
 		style="margin-bottom: 1em;">
@@ -29,8 +41,18 @@
 
 		<p:commandButton value="Dodaj nowego klienta"
 			action="#{coustomerListBB.newCoustomer()}" style="margin-bottom:1em;"/>
+			
+		<p:button outcome="/public/companyList" value="Powrót">	</p:button>
+		
+		<h:form> 
+		<p:commandButton value="Odśwież" onclick="reload()" />
+		</h:form>
 
-		<p:dataTable value="#{coustomerListBB.list}" var="c">
+		<p:dataTable value="#{coustomerListBB.list}" var="c" rows="10" 
+					 paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
 			<p:column priority="5">
 				<f:facet name="header">
@@ -50,7 +72,10 @@
 				<f:facet name="header">
 					<h:outputText value="data zakupu" />
 				</f:facet>
-				<h:outputText value="#{c.purchaseDate}" />
+				
+				<h:outputText value="#{c.purchaseDate}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
 			</p:column>
 
 			
@@ -60,10 +85,10 @@
 				</f:facet>
 
 				<p:commandButton value="Edytuj"
-					action="#{coustomerListBB.editCoustomery(c)}" />
+					action="#{coustomerListBB.editCoustomer(c)}" />
 
 				<p:commandButton value="Usuń"
-					action="#{coustomeryListBB.deleteCoustomer(c)}" update="@form" />
+					action="#{coustomerListBB.deleteCoustomer(c)}" update="@form" />
 
 			</p:column>
 

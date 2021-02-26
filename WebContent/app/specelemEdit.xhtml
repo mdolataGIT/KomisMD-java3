@@ -7,12 +7,12 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
-    <f:viewAction action="#{coustomerEditBB.onLoad()}" />
+    <f:viewAction action="#{specelemEditBB.onLoad()}" />
 </f:metadata>
 
 <h:head>
 	<meta charset="utf-8"/>
-	<title>Customer Edit</title>
+	<title>specelem Edit</title>
 </h:head>
 
 <h:body style="background-color: #eee; margin: 0.5em;">
@@ -27,39 +27,33 @@ function goBack() {
 
 	<p:panel toggleable="true" header="Edycja rekordu">
 
-		<h:form rendered="#{coustomerEditBB.coustomer != null}">
+		<h:form rendered="#{specelemEditBB.specelem != null}">
 			<h:panelGrid columns="3" cellpadding="5">
 
-				<h:outputLabel for="c-coustomerName" value="nazwa:" />
-				<p:inputText id="c-coustomerName" value="#{coustomerEditBB.coustomer.coustomerName}"
+				<h:outputLabel for="c-specName" value="nazwa:" />
+				<p:inputText id="c-specName" value="#{specelemEditBB.specelem.specName}"
 					required="true" requiredMessage="Podaj nazwę"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
 				</p:inputText>
-				<p:message for="c-coustomerName" display="icon"/>
+				<p:message for="c-specName" display="icon"/>
 
-				<h:outputLabel for="c-coustomerSurname" value="nazwisko klienta:" />
-				<p:inputText id="c-coustomerSurname" value="#{coustomerEditBB.coustomer.coustomerSurname}"
+				<h:outputLabel for="c-specValue" value="wartość: " />
+				<p:inputText id="c-specValue" value="#{specelemEditBB.specelem.specValue}"
 					required="true" requiredMessage="podaj nazwisko"
 					validatorMessage="co najwyżej 40 znaków">
 					<f:validateLength maximum="40" />
 				</p:inputText>
-				<p:message for="c-coustomerSurname" display="icon"/>
+				<p:message for="c-specValue" display="icon"/>
 				
-				<h:outputLabel for="c-purchaseDate" value="Data zakupu:" />
-				<p:inputText id="c-purchaseDate" value="#{coustomerEditBB.coustomer.purchaseDate}"
-					required="true" requiredMessage="jaka data"
-					converterMessage="niepoprawny format daty (np. 25-01-2011)">
-					<f:convertDateTime pattern="dd-MM-yyyy"/>
-				</p:inputText>
-				<p:message for="c-purchaseDate" display="icon"/>				
+						
 				
 				
 			</h:panelGrid>
 
 			<p:messages id="msgs" />
 
-			<p:commandButton value="Zapisz" action="#{coustomerEditBB.saveData()}" onclick="goBack()"
+			<p:commandButton value="Zapisz" action="#{specelemEditBB.saveData()}" onclick="goBack()"
 				style="margin-right: 1em;" update="@form" />
 
 			

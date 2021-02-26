@@ -17,37 +17,39 @@
 
 <h:body style="background-color: #eee; margin: 0.5em;">
 
+<script>
+function goBack() {
+  window.history.back();
+  
+}
+
+</script>
+
 	<p:panel toggleable="true" header="Edycja rekordu">
 
 		<h:form rendered="#{photoEditBB.photo != null}">
 			<h:panelGrid columns="3" cellpadding="5">
 
-				<h:outputLabel for="p-url" value="url:" />
-				<p:inputText id="p-url" value="#{photoEditBB.photo.url}"
+				<h:outputLabel for="c-url" value="url:" />
+				<p:inputText id="c-url" value="#{photoEditBB.photo.url}"
 					required="true" requiredMessage="Podaj url"
-					validatorMessage="co najwyżej 40 znaków">
-					<f:validateLength maximum="40" />
+					validatorMessage="co najwyżej 255 znaków">
+					<f:validateLength maximum="255" />
 				</p:inputText>
-				<p:message for="p-url" display="icon"/>
-
-				<h:outputLabel for="p-photoDescription" value="opis:" />
-				<p:inputText id="p-photoDescription" value="#{photoEditBB.photo.photoDescription}"
-					required="true" requiredMessage="podaj opis"
-					validatorMessage="co najwyżej 40 znaków">
-					<f:validateLength maximum="40" />
-				</p:inputText>
-				<p:message for="p-photoDescription" display="icon"/>
-				
-				
+				<p:message for="c-url" display="icon"/>
+			
 				
 			</h:panelGrid>
 
 			<p:messages id="msgs" />
 
-			<p:commandButton value="Zapisz" action="#{photoEditBB.saveData()}"
+			<p:commandButton value="Zapisz" action="#{photoEditBB.saveData()}" onclick="goBack()"
 				style="margin-right: 1em;" update="@form" />
 
-			<p:button value="Anuluj" outcome="photoList" />
+			
+					<h:form> 
+					<p:commandButton value="Anuluj" onclick="goBack()" />
+					</h:form>
 		</h:form>
 
 	</p:panel>

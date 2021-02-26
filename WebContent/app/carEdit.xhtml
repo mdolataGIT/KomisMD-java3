@@ -5,6 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+	
+	
 
 <f:metadata>
     <f:viewAction action="#{carEditBB.onLoad()}" />
@@ -17,11 +19,21 @@
 
 <h:body style="background-color: #eee; margin: 0.5em;">
 
+<script>
+function goBack() {
+  window.history.back();
+  
+}
+
+</script>
+
+
 	<p:panel toggleable="true" header="Edycja rekordu">
 
 		<h:form rendered="#{carEditBB.car != null}">
 			<h:panelGrid columns="3" cellpadding="5">
-
+			
+			
 				<h:outputLabel for="c-brand" value="marka:" />
 				<p:inputText id="c-brand" value="#{carEditBB.car.brand}"
 					required="true" requiredMessage="Podaj marke"
@@ -88,17 +100,22 @@
 			</h:panelGrid>
 
 			<p:messages id="msgs" />
-
-			<p:commandButton value="Zapisz" action="#{carEditBB.saveData()}"
+			
+			<p:commandButton value="Zapisz"   action="#{carEditBB.saveData()}" onclick="goBack()"
 				style="margin-right: 1em;" update="@form" />
-				
-
-
-			<p:button value="Anuluj" outcome="/public/carList" />
+							
+					<h:form> 
+					<p:commandButton value="Anuluj" onclick="goBack()" />
+					</h:form>				
+			
+		
+			
 		</h:form>
 
+					
+					
 	</p:panel>
-
+	
 </h:body>
 
 </html>

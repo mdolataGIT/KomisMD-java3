@@ -37,6 +37,9 @@ public class CarListBB {
 	@EJB
 	CarDAO carDAO;
 	
+	@EJB
+	CompanyDAO companyDAO;
+	
 		
 	public String getBrand() {
 		return brand;
@@ -49,11 +52,13 @@ public class CarListBB {
 	public List<Car> getFullList(){
 		return carDAO.getFullList();
 	}
-
+	
+	
+	Map<String,Object> searchParams = new HashMap<String, Object>();
 	public List<Car> getList(){
 		List<Car> list = null;
 		
-		Map<String,Object> searchParams = new HashMap<String, Object>();
+		//Map<String,Object> searchParams = new HashMap<String, Object>();
 		
 		if (brand != null && brand.length() > 0){
 			searchParams.put("brand", brand);
@@ -66,11 +71,19 @@ public class CarListBB {
 		
 		return list;
 	}
+	
 
 	public String newCar(){
+		
+		Integer value = (Integer) searchParams.get("companyId");
+		
+		
 		Car car = new Car();
-			
+		Company comp = companyDAO.find(value.intValue());
+		
+		car.setCompany(comp);	
 		flash.put("car", car);
+		
 		
 		return PAGE_CAR_EDIT;
 	}
@@ -100,8 +113,6 @@ public class CarListBB {
 		return car;
 	}
 
-	@EJB
-	CompanyDAO companyDAO;
 
 	@Inject
 	FacesContext context;

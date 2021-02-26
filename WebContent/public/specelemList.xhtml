@@ -7,14 +7,14 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
-    	<f:viewParam name="c" value="#{photoListBB.car.idCar}"
+    	<f:viewParam name="c" value="#{specelemListBB.car.idCar}"
 		converterMessage="Nieoczekiwany błąd"/>
-	<f:event type="preRenderView" listener="#{photoListBB.onLoad()}" />
+	<f:event type="preRenderView" listener="#{specelemListBB.onLoad()}" />
 </f:metadata>
 
 <h:head>
 	<meta charset="utf-8"/>
-	<title>Photo List</title>
+	<title>Customer List</title>
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
 
@@ -22,14 +22,15 @@
 function reload() {
 	window.location.reload(false);
 	  
-}</script>
+}
+</script>
 
 	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
 		style="margin-bottom: 1em;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="url:" />
-				<p:inputText value="#{photoListBB.url}" />
+				<h:outputLabel value="nazwa:" />
+				<p:inputText value="#{specelemListBB.specName}" />
 				<p:commandButton value="Szukaj" update="form-table" />
 			</h:panelGrid>
 		</h:form>
@@ -39,8 +40,8 @@ function reload() {
 
 	<h:form id="form-table" style="margin-bottom:1em;">
 
-		<p:commandButton value="Dodaj nowe zdjecie"
-			action="#{photoListBB.newPhoto()}" style="margin-bottom:1em;"/>
+		<p:commandButton value="Dodaj nowy element specyfikacji"
+			action="#{specelemListBB.newSpecelem()}" style="margin-bottom:1em;"/>
 			
 		<p:button outcome="/public/companyList" value="Powrót">	</p:button>
 		
@@ -48,39 +49,42 @@ function reload() {
 		<p:commandButton value="Odśwież" onclick="reload()" />
 		</h:form>
 
-		<p:dataTable value="#{photoListBB.list}" var="c" rows="10" 
+		<p:dataTable value="#{specelemListBB.list}" var="c" rows="10" 
 					 paginator="true"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                      currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                      rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
-<!--  
 			<p:column priority="5">
 				<f:facet name="header">
-					<h:outputText value="url" />
+					<h:outputText value="nazwa" />
 				</f:facet>
-				<h:outputText value="#{c.url}" />
+				<h:outputText value="#{c.specName}" />
 			</p:column>
--->
-			<p:column priority="5">
+
+			<p:column>
 				<f:facet name="header">
-					<h:outputText value="zdjęcie" />
+					<h:outputText value="wartość" />
 				</f:facet>
-				<img src="#{c.url}" />
-				<br> </br>
-				
+				<h:outputText value="#{c.specValue}" />
+			</p:column>
+
+	
+
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
 				<p:commandButton value="Edytuj"
-					action="#{photoListBB.editPhoto(c)}" />
+					action="#{specelemListBB.editSpecelem(c)}" />
+
 				<p:commandButton value="Usuń"
-					action="#{photoListBB.deletePhoto(c)}" update="@form" />
-				
-				
-				
+					action="#{specelemListBB.deleteSpecelem(c)}" update="@form" />
+
 			</p:column>
-
-		
-
-		
+			
 		</p:dataTable>
 	</h:form>
 

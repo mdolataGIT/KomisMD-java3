@@ -21,6 +21,7 @@ public class CarEditBB implements Serializable {
 
 	private static final String PAGE_CAR_LIST = "/public/carList?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
+	
 
 	private Car car = new Car();
 	private Car loaded = null;
@@ -69,7 +70,7 @@ public class CarEditBB implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "wyst¹pi³ b³¹d zapisu", null));
 			return PAGE_STAY_AT_THE_SAME;
 		}
-
-		return PAGE_CAR_LIST;
+		return PAGE_STAY_AT_THE_SAME;
+		//return PAGE_CAR_LIST;
 	}
 }

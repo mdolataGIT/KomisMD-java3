@@ -16,17 +16,19 @@ import javax.inject.Named;
 
 import jsf.hockshop.dao.CarDAO;
 import jsf.hockshop.dao.CoustomerDAO;
+import jsf.hockshop.dao.SpecelemDAO;
 import jsf.hockshop.entities.Car;
 import jsf.hockshop.entities.Company;
 import jsf.hockshop.entities.Coustomer;
+import jsf.hockshop.entities.Specelem;
 
 @Named
 @RequestScoped
-public class CoustomerListBB {
-	private static final String PAGE_COUSTOMER_EDIT = "/app/coustomerEdit?faces-redirect=true";
+public class SpecelemListBB {
+	private static final String PAGE_SPECELEM_EDIT = "/app/specelemEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private String coustomerName;
+	private String specName;
 	
 	@Inject
 	ExternalContext extcontext;
@@ -35,61 +37,61 @@ public class CoustomerListBB {
 	Flash flash;
 	
 	@EJB
-	CoustomerDAO coustomerDAO;
+	SpecelemDAO specelemDAO;
 	
 	@EJB
 	CarDAO carDAO;
 	
-	public String getCoustomerName() {
-		return coustomerName;
+	public String getSpecName() {
+		return specName;
 	}
 	
-	public void setCoustomerName(String coustomerName) {
-		this.coustomerName=coustomerName;
+	public void setSpecName(String specName) {
+		this.specName=specName;
 	}
 	
-	public List<Coustomer>getFullList(){
-		return coustomerDAO.getFullList();
+	public List<Specelem>getFullList(){
+		return specelemDAO.getFullList();
 	}
 	
 	
 	Map<String,Object> searchParams = new HashMap<String,Object>();
-	public List<Coustomer> getList(){
-		List<Coustomer> list= null;
+	public List<Specelem> getList(){
+		List<Specelem> list= null;
 		
 		//Map<String,Object> searchParams = new HashMap<String,Object>();
 		
-		if (coustomerName!=null && coustomerName.length()>0) {
-			searchParams.put("coustomerName",coustomerName);
+		if (specName!=null && specName.length()>0) {
+			searchParams.put("specName",specName);
 		}
 		
 		searchParams.put("carId", car.getIdCar());
 		
-		list = coustomerDAO.getList(searchParams);
+		list = specelemDAO.getList(searchParams);
 		return list;
 	}
 	
-	public String newCoustomer() {
+	public String newSpecelem() {
 		
 		Integer value = (Integer) searchParams.get("carId");
 		
-		Coustomer coustomer = new Coustomer();
+		Specelem specelem = new Specelem();
 		Car ca = carDAO.find(value.intValue());
-		coustomer.setCar(ca);
+		specelem.setCar(ca);
 		
 		
-		flash.put("coustomer",coustomer);
-		return PAGE_COUSTOMER_EDIT;
+		flash.put("specelem",specelem);
+		return PAGE_SPECELEM_EDIT;
 		
 	}
 	
-	public String editCoustomer(Coustomer coustomer) {
-		flash.put("coustomer", coustomer);
-		return PAGE_COUSTOMER_EDIT;
+	public String editSpecelem(Specelem specelem) {
+		flash.put("specelem", specelem);
+		return PAGE_SPECELEM_EDIT;
 	}
 	
-	public String deleteCoustomer(Coustomer coustomer) {
-		coustomerDAO.remove(coustomer);
+	public String deleteSpecelem(Specelem specelem) {
+		specelemDAO.remove(specelem);
 		return PAGE_STAY_AT_THE_SAME;
 	}
 	
@@ -97,10 +99,10 @@ public class CoustomerListBB {
 	private static final String PAGE_CAR_LIST = "/public/carList?faces-redirect=true";
 	private Car car = new Car();
 	private Car loaded = null;
-	private Coustomer coustomer = new Coustomer();
+	private Specelem specelem = new Specelem();
 	
-	public Coustomer getCoustomer() {
-		return coustomer;
+	public Specelem getSpecelem() {
+		return specelem;
 	}
 
 

@@ -18,6 +18,13 @@
 </h:head>
 <h:body style="background-color: #eee; margin: 0.5em;">
 
+<script> 
+function reload() {
+	window.location.reload(false);
+	  
+}</script>
+
+
 	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
 		style="margin-bottom: 1em;">
 		<h:form>
@@ -38,10 +45,20 @@
 		
 		<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" />
 		
-		<p:button outcome="/public/userList" value="Powrót">
+		<p:button outcome="/public/companyList" value="Powrót">
+		
 		</p:button>
 
-		<p:dataTable value="#{carListBB.list}" var="c">
+					<h:form> 
+					<p:commandButton value="Odśwież" onclick="reload()" />
+					</h:form>
+
+
+		<p:dataTable value="#{carListBB.list}" var="c" rows="10" 
+					 paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
 
 			<p:column priority="5">
 				<f:facet name="header">
@@ -101,7 +118,19 @@
 					action="#{carListBB.editCar(c)}" />
 
 				<p:commandButton value="Usuń"
-					action="#{carListBB.deleteCar(c)}" update="@form" />
+					action="#{carListBB.deleteCar(c)}" update="@form" />				
+					
+				<p:button outcome="/public/photoList" value="Zdjęcia">
+					<f:param name="c" value="#{c.idCar}" />
+				</p:button>
+				
+				<p:button outcome="/public/coustomerList" value="Klient">
+					<f:param name="c" value="#{c.idCar}" />
+				</p:button>
+				
+				<p:button outcome="/public/specelemList" value="Specyfikacja">
+					<f:param name="c" value="#{c.idCar}" />
+				</p:button>
 
 			</p:column>
 

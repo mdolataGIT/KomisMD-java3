@@ -17,6 +17,14 @@
 
 <h:body style="background-color: #eee; margin: 0.5em;">
 
+<script>
+function goBack() {
+  window.history.back();
+  
+}
+
+</script>
+
 	<p:panel toggleable="true" header="Edycja rekordu">
 
 		<h:form rendered="#{companyEditBB.company != null}">
@@ -62,7 +70,10 @@
 			<p:commandButton value="Zapisz" action="#{companyEditBB.saveData()}"
 				style="margin-right: 1em;" update="@form" />
 
-			<p:button value="Anuluj" outcome="/public/companyList" />
+			
+					<h:form> 
+					<p:commandButton value="Anuluj" onclick="goBack()" />
+					</h:form>
 		</h:form>
 
 	</p:panel>

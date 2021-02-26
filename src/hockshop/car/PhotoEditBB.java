@@ -19,7 +19,7 @@ import jsf.hockshop.entities.Photo;
 public class PhotoEditBB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_PHOTO_LIST = "photoList?faces-redirect=true";
+	private static final String PAGE_PHOTO_LIST = "/public/photoList?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
 	private Photo photo = new Photo();
