@@ -57,9 +57,7 @@ function goBack() {
 					<f:validateLength maximum="40" />
 			    </p:inputText>
 				<p:message for="c-firstRegistration" display="icon"/>
-				
-				
-				
+							
 				<h:outputLabel for="c-capacity" value="pojemność:" />
 				<p:inputText id="c-capacity" value="#{carEditBB.car.capacity}"
 					required="true" requiredMessage="podaj pojemność"
@@ -94,9 +92,6 @@ function goBack() {
 				</p:inputText>
 				<p:message for="c-description" display="icon"/>	
 				
-			
-
-
 			</h:panelGrid>
 
 			<p:messages id="msgs" />
@@ -106,13 +101,9 @@ function goBack() {
 							
 					<h:form> 
 					<p:commandButton value="Anuluj" onclick="goBack()" />
-					</h:form>				
-			
-		
+					</h:form>						
 			
 		</h:form>
-
-					
 					
 	</p:panel>
 	

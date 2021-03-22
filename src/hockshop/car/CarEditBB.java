@@ -71,6 +71,5 @@ public class CarEditBB implements Serializable {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 		return PAGE_STAY_AT_THE_SAME;
-		//return PAGE_CAR_LIST;
 	}
 }

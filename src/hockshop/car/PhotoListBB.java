@@ -57,8 +57,6 @@ public class PhotoListBB {
 	public List<Photo> getList(){
 		List<Photo> list = null;
 		
-		//Map<String,Object> searchParams = new HashMap<String, Object>();
-		
 		if (url!= null && url.length() > 0){
 			searchParams.put("url", url);
 		}
@@ -124,18 +122,11 @@ public class PhotoListBB {
 				car = loaded;
 			} else {
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d", null));
-				// if (!context.isPostback()) { // possible redirect
-				// context.getExternalContext().redirect("personList.xhtml");
-				// context.responseComplete();
-				// }
 			}
 		}
 
 	}
 	
-	
-	
-
 	public String saveData() {
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;

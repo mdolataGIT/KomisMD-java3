@@ -58,7 +58,6 @@ public class CarListBB {
 	public List<Car> getList(){
 		List<Car> list = null;
 		
-		//Map<String,Object> searchParams = new HashMap<String, Object>();
 		
 		if (brand != null && brand.length() > 0){
 			searchParams.put("brand", brand);
@@ -132,10 +131,6 @@ public class CarListBB {
 				company = loaded;
 			} else {
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d", null));
-				// if (!context.isPostback()) { // possible redirect
-				// context.getExternalContext().redirect("personList.xhtml");
-				// context.responseComplete();
-				// }
 			}
 		}
 

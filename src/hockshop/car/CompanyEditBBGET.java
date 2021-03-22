@@ -45,10 +45,7 @@ public class CompanyEditBBGET implements Serializable {
 				company = loaded;
 			} else {
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błędne użycie systemu", null));
-				// if (!context.isPostback()) { // possible redirect
-				// context.getExternalContext().redirect("personList.xhtml");
-				// context.responseComplete();
-				// }
+
 			}
 		}
 

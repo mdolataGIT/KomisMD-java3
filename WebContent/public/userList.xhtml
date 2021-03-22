@@ -37,11 +37,6 @@
 			
 		<p:commandButton value="Wyloguj" action="#{loginBB.doLogout()}" />
 		
-		
-			 
-<!--  	 <p:button outcome="/public/companyList" value="Wejdz do firm">
-			<f:param name="c" value="#{c.idCompany}" />
-		</p:button>	 -->
 
 		<p:dataTable value="#{userListBB.list}" var="u" rows="10" 
 					 paginator="true"
@@ -55,13 +50,6 @@
 				</f:facet>
 				<h:outputText value="#{u.login}" />
 			</p:column>
-
-	<!--  		<p:column>
-				<f:facet name="header">
-					<h:outputText value="hasło" />
-				</f:facet>
-				<h:outputText value="#{u.password}" />
-			</p:column>  -->
 
 			<p:column>
 				<f:facet name="header">

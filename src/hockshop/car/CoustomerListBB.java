@@ -57,7 +57,6 @@ public class CoustomerListBB {
 	public List<Coustomer> getList(){
 		List<Coustomer> list= null;
 		
-		//Map<String,Object> searchParams = new HashMap<String,Object>();
 		
 		if (coustomerName!=null && coustomerName.length()>0) {
 			searchParams.put("coustomerName",coustomerName);
@@ -122,16 +121,10 @@ public class CoustomerListBB {
 				car = loaded;
 			} else {
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d", null));
-				// if (!context.isPostback()) { // possible redirect
-				// context.getExternalContext().redirect("personList.xhtml");
-				// context.responseComplete();
-				// }
 			}
 		}
 
 	}
-	
-	
 	
 
 	public String saveData() {

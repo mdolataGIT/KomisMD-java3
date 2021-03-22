@@ -37,10 +37,6 @@ public class CompanyListBB {
 	CompanyDAO companyDAO;
 	
 	
-
-	
-	
-
 	public String getName() {
 		return name;
 	}

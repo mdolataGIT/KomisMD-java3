@@ -59,7 +59,6 @@ public class SpecelemListBB {
 	public List<Specelem> getList(){
 		List<Specelem> list= null;
 		
-		//Map<String,Object> searchParams = new HashMap<String,Object>();
 		
 		if (specName!=null && specName.length()>0) {
 			searchParams.put("specName",specName);
@@ -124,18 +123,13 @@ public class SpecelemListBB {
 				car = loaded;
 			} else {
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "B³¹d", null));
-				// if (!context.isPostback()) { // possible redirect
-				// context.getExternalContext().redirect("personList.xhtml");
-				// context.responseComplete();
-				// }
+
 			}
 		}
 
 	}
 	
 	
-	
-
 	public String saveData() {
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
